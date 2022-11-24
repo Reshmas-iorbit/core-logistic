@@ -1,0 +1,228 @@
+ <Grid item xs={12} sm={6} >
+                <TextField
+                  required
+                  label={formData.division.formelements[0].label}
+                  fullWidth
+
+                  size='small'
+
+
+                  variant='outlined'
+                  onChange={onChange}
+                  name="poId"
+                  value={product.poId}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Origin Location</InputLabel>
+                  <Select
+                    required
+                    fullWidth
+                    label={formData.division.formelements[1].label}
+                    size='small'
+                    variant='outlined'
+                    type="select"
+                    name="origin"
+                    onChange={(e) => onChange(e)}
+                    value={product.origin}
+                  >
+                    <MenuItem
+                      onChange={(e) => onChange(e)}
+                      value={product.origin}
+
+                    >
+                      {/* <em>None</em> */}
+                    </MenuItem>
+                    <MenuItem value={"Delhi"}>
+                      Delhi
+                    </MenuItem>
+                    <MenuItem value={"Pune"}>
+                      Pune
+                    </MenuItem>
+                    <MenuItem value={"Mumbai"}>
+                      Mumbai
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Destination Location</InputLabel>
+                  <Select
+                    fullWidth
+                    required
+                    label={formData.division.formelements[2].label}
+                    type="select"
+                    size='small'
+                    variant='outlined'
+                    name="destination"
+                    //   onChange={onChange}
+                    //         name="date"
+                    //         value={form.date}
+                    value={product.destination}
+                    onChange={(e) => onChange(e)}
+
+                  >
+                    <MenuItem
+
+                      value={product.destination}
+                      onChange={(e) => onChange(e)}
+                    >
+                      {/* <em>None</em> */}
+                    </MenuItem>
+                    <MenuItem value={"Banglore"}>
+                      Banglore
+                    </MenuItem>
+                    <MenuItem value={"Trivandrum"}>
+                      Trivandrum
+                    </MenuItem>
+                    <MenuItem value={"Kochi"}>
+                      Kochi
+                    </MenuItem>
+                  </Select>
+
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+
+                  focused
+                  id="outlined-uncontrolled"
+                  fullWidth
+                  required
+                  label={core.division.formelements[3].label}
+                  size='small'
+                  type="date"
+                  variant='outlined'
+                  onChange={onChange}
+                  name="date"
+                  value={product.date}
+                />               
+
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  label={core.division.formelements[4].label}
+                  fullWidth
+                  size='small'
+                  variant='outlined'
+                  onChange={onChange}
+                  name="address"
+                  value={product.address}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  label={core.division.formelements[5].label}
+                  fullWidth
+                  size='small'
+                  variant='outlined'
+                  onChange={onChange}
+                  name="email"
+                  value={product.email}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  label={core.division.formelements[6].label}
+                  fullWidth
+                  size='small'
+                  variant='outlined'
+                  onChange={onChange}
+                  name="production"
+                  value={product.production}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  label={core.division.formelements[7].label}
+                  fullWidth
+                  size='small'
+                  variant='outlined'
+                  onChange={onChange}
+                  name="membership"
+                  value={product.membership}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  label={core.division.formelements[8].label}
+                  fullWidth
+                  size='small'
+                  variant='outlined'
+                  onChange={onChange}
+                  name="warehouse"
+                  value={product.warehouse}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  label={core.division.formelements[9].label}
+                  fullWidth
+                  size='small'
+                  variant='outlined'
+                  onChange={onChange}
+                  name="truckload"
+                  value={product.truckload}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  label={core.division.formelements[10].label}
+                  fullWidth
+                  size='small'
+                  variant='outlined'
+                  type="Number"
+                  onChange={onChange}
+                  name="price"
+                  value={product.price}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  label={core.division.formelements[11].label}
+                  fullWidth
+                  size='small'
+
+                  variant='outlined'
+                  onChange={onChange}
+                  name="contact"
+                  value={product.contact}
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={showData}
+                >
+                  Create Po
+                </Button>
+              </Grid>  
+              <Grid item xs={6}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Cancel
+                </Button>
+              </Grid>

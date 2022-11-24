@@ -1,0 +1,95 @@
+{
+  "division": {
+    "name": "PO Header",
+    "formelements": [
+      {
+        "id": "POID",
+        "label": "PO ID",
+        "control": "textbox",
+        "validation": "alphanumeric",
+        "disabled": true
+      },
+      {
+        "id": "origin",
+        "label": "Origin Location",
+        "control": "select",
+        "populateURL": "/Service/origin.json"
+      },
+      {
+        "id": "destination",
+        "label": "Destination Location",
+        "control": "select",
+        "populateURL": "/Service/destination.json"
+      },
+      {
+        "id": "date",
+        "label": "Expected Date",
+        "control": "date",
+        "validate": "datetime"
+      },
+      {
+        "id": "address",
+        "label": "Address",
+        "control": "textbox",
+        "validate": "alphanumeric"
+      },
+      {
+        "id": "email",
+        "label": "Email",
+        "control": "textbox",
+        "validate": ""
+      },
+      {
+        "id": "production",
+        "label": "Production",
+        "control": "textbox",
+        "validate": "alphanumeric"
+      },
+      {
+        "id": "membership",
+        "label": "Membership",
+        "control": "textbox",
+        "validate": "alphanumeric"
+      },
+      {
+        "id": "warehouse",
+        "label": "WareHouse Service",
+        "control": "textbox",
+        "validate": "alphanumeric"
+      },
+      {
+        "id": "truckload",
+        "label": "TruckLoad Service",
+        "control": "textbox",
+        "validate": "alphanumeric"
+      },
+      {
+        "id": "price",
+        "label": "Price",
+        "control": "textbox",
+        "validate": "alphanumeric"
+      },
+      {
+        "id": "contact",
+        "label": "Contact",
+        "control": "textbox",
+        "validate": "alphanumeric"
+      }
+    ],
+    "buttons": [
+      {
+        "id": "create",
+        "label": "Create PO",
+        "control": "button",
+        "validationjs": "validatedata",
+        "submitURL": "https://localhost/createPO"
+      },
+      {
+        "id": "cancel",
+        "label": "Cancel",
+        "control": "button",
+        "redirect": "polist"
+      }
+    ]
+  }
+}

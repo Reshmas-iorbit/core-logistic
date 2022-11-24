@@ -1,0 +1,107 @@
+{
+    "division": {
+      "name": "PO Header",
+      "formelements": [
+        {
+          "id": "POID",
+          "label": "PO ID",
+          "control": "textbox",
+          "validation": "alphanumeric",
+          "disabled": false
+        
+        },
+        {
+          "id": "origin",
+          "label": "Origin Location",
+          "control": "select",
+          "populateURL": "/Service/origin.json",
+          "disabled": false
+        },
+        {
+          "id": "destination",
+          "label": "Destination Location",
+          "control": "select",
+          "populateURL": "/Service/destination.json",
+          "disabled": true
+        },
+        {
+          "id": "date",
+          "label": "Expected Date",
+          "control": "date",
+          "validate": "datetime",
+          "disabled": false
+        },
+        {
+          "id": "address",
+          "label": "Address",
+          "control": "textbox",
+          "validate": "alphanumeric",
+          "disabled": false
+        },
+        {
+          "id": "email",
+          "label": "Email",
+          "control": "textbox",
+          "validate": "",
+          "disabled": false
+        },
+        {
+          "id": "production",
+          "label": "Production",
+          "control": "textbox",
+          "validate": "alphanumeric",
+          "disabled": true
+        },
+        {
+          "id": "membership",
+          "label": "Membership",
+          "control": "textbox",
+          "validate": "alphanumeric",
+          "disabled": true
+        },
+        {
+          "id": "warehouse",
+          "label": "WareHouse Service",
+          "control": "textbox",
+          "validate": "alphanumeric",
+          "disabled": false
+        },
+        {
+          "id": "truckload",
+          "label": "TruckLoad Service",
+          "control": "textbox",
+          "validate": "alphanumeric",
+          "disabled": false
+        },
+        {
+          "id": "price",
+          "label": "Price",
+          "control": "textbox",
+          "validate": "alphanumeric",
+          "disabled": false
+        },
+        {
+          "id": "contact",
+          "label": "Contact",
+          "control": "textbox",
+          "validate": "alphanumeric",
+          "disabled": false
+        }
+      ],
+      "buttons": [
+        {
+          "id": "create",
+          "label": "Create PO",
+          "control": "button",
+          "validationjs": "validatedata",
+          "submitURL": "https://localhost/createPO"
+        },
+        {
+          "id": "cancel",
+          "label": "Cancel",
+          "control": "button",
+          "redirect": "polist"
+        }
+      ]
+    }
+  }

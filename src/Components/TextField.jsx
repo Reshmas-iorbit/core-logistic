@@ -14,7 +14,7 @@ const TextBox = ({ formDetails, onChange, inputDetails, editFlag }) => {
             name={formDetails.id}
             value={inputDetails[formDetails.id]}
             InputProps={{
-                readOnly: editFlag == 'edit' ? formDetails.disabled : editFlag == 'view' ? true : ""
+                readOnly: editFlag == 'edit' ? formDetails.disabled : editFlag == 'view' ? true : false
             }}
 
         />

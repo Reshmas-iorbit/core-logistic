@@ -20,6 +20,7 @@ import Selects from "../Components/Select";
 import { useParams } from "react-router-dom";
 
 import Buttons from "../Components/Button";
+import TableData from "../Components/Table";
 
 
 function Copyright(props) {
@@ -85,7 +86,7 @@ export default function RegForm() {
     if (aev != 'add') {
       console.log('edit function');
       axios.get("/Details/description.json")
-        .then((resp) =>{ 
+        .then((resp) => {
           console.log(resp.data);
           setInputDetails(resp.data)
         })
@@ -109,42 +110,45 @@ export default function RegForm() {
             onSubmit={handleSubmit}
             sx={{ mt: 4 }}
           >
-            <Grid container spacing={4}>
-              {
-                Object.keys(formDetails).length ? (
-                  formDetails.division.formelements.map((item, index) => {
-                    return (
-                      <Grid item xs={12} sm={6} >
-                        {
-                          item.control == 'select' ? (<Selects formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev}/>)
-                            : item.control == 'textbox' ? (<TextBox formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev}/>)
-                              : item.control == 'date' ? (<Date formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
-                                : (<>No Data Box</>)
+            {
+              aev == 'view' ? (<><TableData inputDetails={inputDetails} /></>) : (<Grid container spacing={4}>
+                {
+                  Object.keys(formDetails).length ? (
+                    formDetails.division.formelements.map((item, index) => {
+                      return (
+                        <Grid key={index} item xs={12} sm={6} >
+                          {
+                            item.control == 'select' ? (<Selects formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
+                              : item.control == 'textbox' ? (<TextBox formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
+                                : item.control == 'date' ? (<Date formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
+                                  : (<>No Data Box</>)
 
-                        }
-                        {/* // <FormFields FormDetails={item} onChange={onChange} inputDetails={inputDetails} /> */}
-                      </Grid>
-                    )
-                  })
-                ) : <div>No Data</div>
+                          }
+                          {/* // <FormFields FormDetails={item} onChange={onChange} inputDetails={inputDetails} /> */}
+                        </Grid>
+                      )
+                    })
+                  ) : <div>No Data</div>
 
-              }
-              {
-                Object.keys(formDetails).length ? (
-                  formDetails.division.buttons.map((item, index) => {
-                    return (
-                      <Grid item xs={12} sm={6} >
-                        <Buttons formDetails={item} showData={showData} inputDetails={inputDetails} />
-                      </Grid>
-                    )
-                  })
-                ) : <div>No Data</div>
+                }
+                {
+                  Object.keys(formDetails).length ? (
+                    formDetails.division.buttons.map((item, index) => {
+                      return (
+                        <Grid key={index} item xs={12} sm={6} >
+                          <Buttons formDetails={item} showData={showData} inputDetails={inputDetails} />
+                        </Grid>
+                      )
+                    })
+                  ) : <div>No Data</div>
 
-              }
+                }
 
-            </Grid>
+              </Grid>
+              )
+            }
 
-            <Grid container justifyContent="flex-end"></Grid>
+
           </Box>
         </Box>
         {/* <Copyright sx={{ mt: 5 }} /> */}

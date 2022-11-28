@@ -26,8 +26,8 @@ export default function TableData({ inputDetails }) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Field Name</TableCell>
-            <TableCell align="right">Values</TableCell>
+            <TableCell><h3>Field Name</h3></TableCell>
+            <TableCell align="right"><h3>Values</h3></TableCell>
 
           </TableRow>
         </TableHead>

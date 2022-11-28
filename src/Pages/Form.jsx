@@ -17,7 +17,7 @@ import axios from "axios";
 import TextBox from "../Components/TextField";
 import Date from "../Components/Date";
 import Selects from "../Components/Select";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Buttons from "../Components/Button";
 import TableData from "../Components/Table";
@@ -32,8 +32,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://iorbit-tech.com/">
+        iOrbit Digital Technologies
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -43,11 +43,11 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function RegForm() {
-
-
+export default function RegForm({ fields }) {
+const navigate = useNavigate()
+  // console.log(fields,"link for json");
   const { aev } = useParams();
-  console.log(aev);
+  // console.log(aev);
 
   const [inputDetails, setInputDetails] = React.useState({});
   const [formDetails, setFormDetails] = React.useState({});
@@ -67,19 +67,31 @@ export default function RegForm() {
       [name]: value,
     }));
   };
-  const showData = () => {
-    console.log("inputDetails:", inputDetails);
 
+  const showData = (url) => {
+    console.log(url,"url :");
+
+    axios.post(url, inputDetails)
+      .then((resp) => {
+        // setFormDetails(resp.data)
+        console.log(resp);
+      })
   };
+
+  const handleEditButton = () => {
+    navigate("/form/edit")
+  }
+
   React.useEffect(() => {
     console.log(inputDetails)
   }, [inputDetails])
+
   React.useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) console.log(inputDetails);
   }, [formErrors]);
 
   React.useEffect(() => {
-    axios.get("/Service/po.json")
+    axios.get(fields)
       .then((resp) => setFormDetails(resp.data))
   }, []);
   React.useEffect(() => {
@@ -111,7 +123,20 @@ export default function RegForm() {
             sx={{ mt: 4 }}
           >
             {
-              aev == 'view' ? (<><TableData inputDetails={inputDetails} /></>) : (<Grid container spacing={4}>
+              aev == 'view' ? (<>
+              <TableData inputDetails={inputDetails} />
+              <Grid xs={12} sm={6} >
+                          <Button 
+                           type="submit"
+                           fullWidth
+                           variant="contained"
+                           sx={{ mt: 3, mb: 2 }}
+                           onClick={()=>handleEditButton()}
+                          >
+                            EDIT
+                          </Button>
+                        </Grid>
+              </>) : (<Grid container spacing={4}>
                 {
                   Object.keys(formDetails).length ? (
                     formDetails.division.formelements.map((item, index) => {
@@ -129,7 +154,6 @@ export default function RegForm() {
                       )
                     })
                   ) : <div>No Data</div>
-
                 }
                 {
                   Object.keys(formDetails).length ? (
@@ -141,14 +165,10 @@ export default function RegForm() {
                       )
                     })
                   ) : <div>No Data</div>
-
                 }
-
               </Grid>
               )
             }
-
-
           </Box>
         </Box>
         {/* <Copyright sx={{ mt: 5 }} /> */}

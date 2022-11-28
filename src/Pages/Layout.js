@@ -75,17 +75,17 @@ export default function Layout() {
     {
       text: "Create",
       icon: <MailIcon />,
-      nav: "adddetails",
+      nav: "form/add",
     },
     {
       text: "Logstics",
       icon: <ArticleIcon />,
-      nav: "logistics",
+      nav: "form/edit",
     },
     {
       text: "Dashbord",
       icon: <ArticleIcon />,
-      nav: "form",
+      nav: "form/view",
     },
     {
       text: "Login",

@@ -7,18 +7,18 @@ import TableView from './Components/Table';
 
 
 const App = () => {
+  const fields = "/Service/po.json";
+
   return (
-    <div>
-      <Routes>
-        {/* <Form /> */}
-        <Route path="/table" element={<TableView />}/>
-        <Route path="/" element={<Layout />}>
-          <Route path="/form/:aev" element={<RegForm />} />
-         
-          
-        </Route>
-      </Routes>
-    </div>
+
+    <Routes>
+      {/* <Form /> */}
+      <Route path="/table" element={<TableView />} />
+      <Route path="/" element={<Layout />}>
+        <Route path="/form/:aev" element={<RegForm fields={fields} />} />
+      </Route>
+    </Routes>
+
   )
 }
 

@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import React from 'react';
 
-const Buttons = ({ formDetails, showData  }) => {
+const Buttons = ({ formDetails, showData  }) => {  
     if (formDetails.submitURL == null) {
         console.log("URL SJSSJS");
     }

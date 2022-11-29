@@ -21,6 +21,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import Buttons from "../Components/Button";
 import TableData from "../Components/Table";
+import EnhancedTable from "../Components/DataTable";
 
 
 function Copyright(props) {
@@ -44,20 +45,28 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function RegForm({ fields }) {
-const navigate = useNavigate()
+  const navigate = useNavigate()
   // console.log(fields,"link for json");
   const { aev } = useParams();
   // console.log(aev);
 
   const [inputDetails, setInputDetails] = React.useState({});
   const [formDetails, setFormDetails] = React.useState({});
+  const [search, setSearch] = React.useState("");
 
   const [isSubmit, setIsSubmit] = React.useState(false);
   const [formErrors, setFormErrors] = React.useState({});
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
+  const handleSearchButton = () => {
 
+    console.log(search,"button click");
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+  
   const onChange = (e) => {
     const { value, name } = e.target;
     console.log("value: ", value, "name :", name);
@@ -69,7 +78,7 @@ const navigate = useNavigate()
   };
 
   const showData = (url) => {
-    console.log(url,"url :");
+    console.log(url, "url :");
 
     axios.post(url, inputDetails)
       .then((resp) => {
@@ -124,24 +133,38 @@ const navigate = useNavigate()
           >
             {
               aev == 'view' ? (<>
-              <TableData inputDetails={inputDetails} />
-              <Grid xs={12} sm={6} >
-                          <Button 
-                           type="submit"
-                           fullWidth
-                           variant="contained"
-                           sx={{ mt: 3, mb: 2 }}
-                           onClick={()=>handleEditButton()}
-                          >
-                            EDIT
-                          </Button>
-                        </Grid>
+                {/* <TableData inputDetails={inputDetails} /> */}
+                <div style={{ display: "flex" }}>
+
+                  <TextField
+                    value={search}
+                    name="search"
+                    id="filled-search"
+                    label="Search field"
+                    type="search"
+                    variant="filled"
+                    onChange={(e) => { handleSearch(e) }}
+                  />
+                  <Button onClick={handleSearchButton} style={{ marginLeft: 10 }} variant="contained">Search</Button>
+                </div>
+                <EnhancedTable inputDetails={inputDetails} />
+                <Grid xs={12} sm={6} >
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    onClick={() => handleEditButton()}
+                  >
+                    EDIT
+                  </Button>
+                </Grid>
               </>) : (<Grid container spacing={4}>
                 {
                   Object.keys(formDetails).length ? (
                     formDetails.division.formelements.map((item, index) => {
                       return (
-                        <Grid key={index} item xs={12} sm={6} >
+                        <Grid key={index} item xs={12} sm={4} >
                           {
                             item.control == 'select' ? (<Selects formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
                               : item.control == 'textbox' ? (<TextBox formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)

@@ -62,13 +62,18 @@ export default function RegForm({ fields }) {
     setSearch(e.target.value)
   }
   const handleSearchButton = () => {
+    axios.get("/Details/search.json")
+      .then((resp) => {
+        console.log(resp.data);
+        setInputDetails(resp.data)
+      })
 
-    console.log(search,"button click");
+    console.log(search, "button click");
   }
   const handleSubmit = (event) => {
     event.preventDefault();
   };
-  
+
   const onChange = (e) => {
     const { value, name } = e.target;
     console.log("value: ", value, "name :", name);
@@ -117,7 +122,7 @@ export default function RegForm({ fields }) {
   }, [formDetails])
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth>
         <CssBaseline />
         <Box
           sx={{

@@ -130,9 +130,8 @@ EnhancedTableHead.propTypes = {
 function EnhancedTableToolbar(props) {
 
   const { numSelected, handleViewButton } = props;
-  const navigation = useNavigate()
   const handleViewButtonClick = () => {
-    navigation("../form/view")
+
   }
 
   return (

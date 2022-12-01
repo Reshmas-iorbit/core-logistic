@@ -1,0 +1,64 @@
+{
+    "headCells": [
+        "id",
+        "date",
+        "POID",
+        "address",
+        "contact",
+        "destination",
+        "email",
+        "membership",
+        "origin",
+        "price",
+        "production",
+        "truckload",
+        "warehouse"
+    ],
+    "data": [
+        [
+            "1",
+            "2022-11-02",
+            "KL2022c",
+            "Vellor goods,near kovil road,nammakal",
+            "7456874356",
+            "Tamilnadu",
+            "vellorgoods@gmail.com",
+            "permanend",
+            "Karnataka",
+            "45000",
+            "wood",
+            "3000",
+            "vellor"
+        ],
+        [
+            "2",
+            "2022-11-19",
+            "KL2022k",
+            "thakaram goods,vkc road,Kochi",
+            "8756348903",
+            "Kerala",
+            "testt@gmail.com",
+            "temperory",
+            "Karnataka",
+            "55000",
+            "steel",
+            "5000",
+            "thakaram"
+        ],
+        [
+            "3",
+            "2022-11-19",
+            "KL2022k",
+            "thakaram goods,vkc road,Kochi",
+            "8756348903",
+            "Kerala",
+            "testt@gmail.com",
+            "temperory",
+            "Karnataka",
+            "55000",
+            "steel",
+            "5000",
+            "thakaram"
+        ]
+    ]
+}

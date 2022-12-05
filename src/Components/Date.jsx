@@ -11,7 +11,7 @@ const Date = ({formDetails,onChange,inputDetails}) => {
     fullWidth
     required
     label={formDetails.label}
-    size='small'
+    // size='small'
     type="date"
     variant='outlined'
     onChange={onChange}

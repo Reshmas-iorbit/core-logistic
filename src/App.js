@@ -17,12 +17,11 @@ const App = () => {
       <Route path="/table" element={<TableView />} />
       <Route path="/" element={<Layout />}>
         <Route path="/form/:aev" element={<RegForm fields={fields} />} />
-        <Route path="/test/:aev" element={<FormView fields={fields} />} />
-
+        <Route path="/test/:aev" element={<FormView fields={fields} />} /> 
       </Route>
     </Routes>
 
-  )
+  ) 
 }
 
 export default App

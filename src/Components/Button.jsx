@@ -1,7 +1,8 @@
 import { Button } from '@mui/material';
 import React from 'react';
 
-const Buttons = ({ formDetails, showData  }) => {  
+const Buttons = ({ formDetails, showData,aev  }) => {  
+    console.log(aev,"aev from button");
     if (formDetails.submitURL == null) {
         console.log("URL SJSSJS");
     }
@@ -13,7 +14,7 @@ const Buttons = ({ formDetails, showData  }) => {
         sx={{ mt: 3, mb: 2 }}
         onClick={formDetails.submitURL ? ()=>showData(formDetails.submitURL) : '' }
     >
-        {formDetails.label}
+        { aev != 'edit' ? formDetails.label : "Save"}
     </Button>
     )
 }

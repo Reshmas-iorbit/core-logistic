@@ -14,7 +14,7 @@ const Buttons = ({ formDetails, showData,aev  }) => {
         sx={{ mt: 3, mb: 2 }}
         onClick={formDetails.submitURL ? ()=>showData(formDetails.submitURL) : '' }
     >
-        { aev != 'edit' ? formDetails.label : "Save"}
+        { aev != 'edit' ? formDetails.label : formDetails.submitURL ?  "Save" : "Cancel" }
     </Button>
     )
 }

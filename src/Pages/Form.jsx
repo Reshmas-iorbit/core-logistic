@@ -48,6 +48,9 @@ export default function RegForm({ fields }) {
   // console.log(fields,"link for json");
   const { aev } = useParams();
   console.log(aev);
+  const styles = {
+    border: '1px solid rgba(0, 0, 0, 0.3)', padding:'5px'
+};
 
 
   const [inputDetails, setInputDetails] = React.useState({});
@@ -184,7 +187,7 @@ export default function RegForm({ fields }) {
                         view && [...Array(view[0].length).keys()].map((item, index) => {
                           return (
                             <Grid item xs={12} sm={4} >
-                              <div>
+                              <div style={styles}>
                                 <h3>
                                   {view[0][index].charAt(0).toUpperCase() + view[0][index].slice(1)}
                                 </h3>
@@ -202,12 +205,12 @@ export default function RegForm({ fields }) {
                     </Grid>
                   </div>
                   <Grid container spacing={4}>
-                    <Grid xs={6} sm={6} >
+                    <Grid xs={3} sm={3} >
                       <Button
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{ mt: 10, mb: 2 }}
                         onClick={() => handleEditButton()}
                       >
                         EDIT

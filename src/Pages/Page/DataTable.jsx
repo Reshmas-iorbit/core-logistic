@@ -77,7 +77,7 @@ function EnhancedTableHead(props) {
     <TableHead>
       <TableRow>
         <TableCell padding="checkbox">
-
+          
           {/* <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -129,11 +129,9 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
 
-  const { numSelected, handleViewButton ,setViewState } = props;
-  const navigation = useNavigate()
+  const { numSelected, handleViewButton } = props;
   const handleViewButtonClick = () => {
-    navigation("../form/view")
-    setViewState()
+
   }
 
   return (
@@ -206,27 +204,14 @@ export default function EnhancedTable({ inputDetails, selected, setSelected, set
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const naviagte = useNavigate()
   React.useEffect(() => {
-    // const selectedData = Object.keys(inputDetails).length && inputDetails.data.filter((row) => {
-    //   return row[0] == selected[0]
-
-    // })
-
-    // Object.keys(inputDetails).length && setView([[...inputDetails.headCells], [...selectedData]])
-    //naviagte("/view")
-  }, [selected])
-
-  const setViewState = async () => {
-
     const selectedData = Object.keys(inputDetails).length && inputDetails.data.filter((row) => {
       return row[0] == selected[0]
 
     })
-    setTimeout(()=>{
-      console.log("Timeout >>>>>>>>>>>>>>");
-      Object.keys(inputDetails).length && setView([[...inputDetails.headCells], [...selectedData]])
-    },1000)
+    Object.keys(inputDetails).length && setView([[...inputDetails.headCells],[...selectedData]])
+    //naviagte("/view")
+  }, [selected])
 
-  }
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -289,7 +274,7 @@ export default function EnhancedTable({ inputDetails, selected, setSelected, set
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} handleViewButton={handleViewButton} setViewState={setViewState} />
+        <EnhancedTableToolbar numSelected={selected.length} handleViewButton={handleViewButton} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}

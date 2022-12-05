@@ -8,7 +8,7 @@ const TextBox = ({ formDetails, onChange, inputDetails, editFlag }) => {
             required
             label={formDetails.id}
             fullWidth
-            size='small'
+            // size='small'
             variant='outlined'
             onChange={onChange}
             name={formDetails.id}

@@ -4,13 +4,13 @@ import { Select } from '@mui/material'
 
 const Selects = ({ formDetails, onChange, inputDetails, editFlag }) => {
     return (
-        <FormControl fullWidth size="small">
+        <FormControl fullWidth >
             <InputLabel>{formDetails.label}</InputLabel>
             <Select
                 required
                 fullWidth
                 label={formDetails.id}
-                size='small'
+                // size='small'
                 variant='outlined'
                 type="select"
                 name={formDetails.id}

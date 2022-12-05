@@ -78,19 +78,9 @@ export default function Layout() {
       nav: "form/add",
     },
     {
-      text: "Logstics",
+      text: "List",
       icon: <ArticleIcon />,
-      nav: "form/edit",
-    },
-    {
-      text: "Dashbord",
-      icon: <ArticleIcon />,
-      nav: "form/view",
-    },
-    {
-      text: "Login",
-      icon: <ArticleIcon />,
-      nav: "form",
+      nav: "form/list",
     },
   ];
   const [open, setOpen] = React.useState(

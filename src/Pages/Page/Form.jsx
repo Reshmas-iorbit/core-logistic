@@ -23,6 +23,7 @@ import Buttons from "../Components/Button";
 import TableData from "../Components/Table";
 import EnhancedTable from "../Components/DataTable";
 
+
 function Copyright(props) {
   return (
     <Typography
@@ -47,25 +48,16 @@ export default function RegForm({ fields }) {
   const navigate = useNavigate()
   // console.log(fields,"link for json");
   const { aev } = useParams();
-  console.log(aev);
-
+  // console.log(aev);
 
   const [inputDetails, setInputDetails] = React.useState({});
   const [formDetails, setFormDetails] = React.useState({});
   const [search, setSearch] = React.useState("");
-  const [view, setView] = React.useState(aev);
-  const [edit, setEdit] = React.useState({});
-  const [changeView, setChangeView] = React.useState("");
+  const [view, setView] = React.useState("");
+
   const [selected, setSelected] = React.useState([]);
   const [isSubmit, setIsSubmit] = React.useState(false);
   const [formErrors, setFormErrors] = React.useState({});
-
-  // if(aev == 'view'){
-  //   setTest("hellooo")
-  // }
-  React.useEffect(() => {
-    console.log(view, "view from useeffect");
-  }, [view])
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
@@ -103,13 +95,6 @@ export default function RegForm({ fields }) {
   };
 
   const handleEditButton = () => {
-    
-    const ress={}
-    const newDescData = view[0].map((item,index)=>{
-      ress[view[0][index]]= view[1][0][index]
-    })
-    setInputDetails(ress)
-    console.log(ress,"from handle button");
     navigate("/form/edit")
   }
 
@@ -119,10 +104,9 @@ export default function RegForm({ fields }) {
 
   React.useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) console.log(inputDetails);
-  }, [formErrors]); 
+  }, [formErrors]);
 
   React.useEffect(() => {
-
     axios.get(fields)
       .then((resp) => setFormDetails(resp.data))
   }, []);
@@ -171,58 +155,43 @@ export default function RegForm({ fields }) {
                   <Button onClick={handleSearchButton} style={{ marginLeft: 10 }} variant="contained">Search</Button>
                 </div>
                 <EnhancedTable inputDetails={inputDetails} selected={selected} setSelected={setSelected} setView={setView} />
-
+                {/* <Grid xs={12} sm={6} >
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    onClick={() => handleEditButton()}
+                  >
+                    EDIT
+                  </Button>
+                </Grid> */}
               </>) : aev == 'view' ? (
+                <Grid container spacing={4}>
+                  <Grid item xs={12} sm={4} >
+                    {
+                      view && view.map((item, index) => {
+                        <div>
+                          <p>
+                            Title
+                          </p>
+                          <p>
+                            Value
+                          </p>
+                        </div>
+                      })
+                    }
 
-                <div>
-                  <div>
-
-                    <Grid container spacing={4}>
-
-                      {
-
-                        view && [...Array(view[0].length).keys()].map((item, index) => {
-                          return (
-                            <Grid item xs={12} sm={4} >
-                              <div>
-                                <h3>
-                                  {view[0][index].charAt(0).toUpperCase() + view[0][index].slice(1)}
-                                </h3>
-                                <p>
-                                  {view[1][0][index]}
-                                </p>
-                              </div>
-                            </Grid>
-                          )
-                        })
-
-                      }
-
-
-                    </Grid>
-                  </div>
-                  <Grid container spacing={4}>
-                    <Grid xs={6} sm={6} >
-                      <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                        onClick={() => handleEditButton()}
-                      >
-                        EDIT
-                      </Button>
-                    </Grid>
                   </Grid>
-                </div>
+                </Grid>
               ) :
 
-                (<Grid container spacing={10}>
+                (<Grid container spacing={4}>
                   {
                     Object.keys(formDetails).length ? (
                       formDetails.division.formelements.map((item, index) => {
                         return (
-                          <Grid key={index} item xs={12} sm={4} > 
+                          <Grid key={index} item xs={12} sm={4} >
                             {
                               item.control == 'select' ? (<Selects formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
                                 : item.control == 'textbox' ? (<TextBox formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
@@ -241,7 +210,7 @@ export default function RegForm({ fields }) {
                       formDetails.division.buttons.map((item, index) => {
                         return (
                           <Grid key={index} item xs={12} sm={3} >
-                            <Buttons formDetails={item} showData={showData} inputDetails={inputDetails} aev={aev} />
+                            <Buttons formDetails={item} showData={showData} inputDetails={inputDetails} />
                           </Grid>
                         )
                       })

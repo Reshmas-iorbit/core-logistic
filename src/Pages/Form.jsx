@@ -1,5 +1,4 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -12,7 +11,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import axios from "axios";
 import TextBox from "../Components/TextField";
 import Date from "../Components/Date";
@@ -20,8 +18,11 @@ import Selects from "../Components/Select";
 import { useNavigate, useParams } from "react-router-dom";
 
 import Buttons from "../Components/Button";
-import TableData from "../Components/Table";
 import EnhancedTable from "../Components/DataTable";
+import ButtonClass from "../Components/ButtonClass";
+import SelectClass from "../Components/SelectClass";
+import TextFieldClass from "../Components/TextFieldClass";
+import DateClass from "../Components/DateClass";
 
 function Copyright(props) {
   return (
@@ -43,32 +44,28 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function RegForm({ fields }) {
+export default function RegForm({ fields, list }) {
   const navigate = useNavigate()
   // console.log(fields,"link for json");
   const { aev } = useParams();
   console.log(aev);
   const styles = {
-    border: '1px solid rgba(0, 0, 0, 0.3)', padding:'5px'
-};
+    border: '1px solid rgba(0, 0, 0, 0.3)', padding: '5px'
+  };
+
 
 
   const [inputDetails, setInputDetails] = React.useState({});
   const [formDetails, setFormDetails] = React.useState({});
+  const [searchBar, setSearchBar] = React.useState({});
   const [search, setSearch] = React.useState("");
   const [view, setView] = React.useState(aev);
-  const [edit, setEdit] = React.useState({});
-  const [changeView, setChangeView] = React.useState("");
+  // const [edit, setEdit] = React.useState({});
+  // const [changeView, setChangeView] = React.useState("");
   const [selected, setSelected] = React.useState([]);
   const [isSubmit, setIsSubmit] = React.useState(false);
   const [formErrors, setFormErrors] = React.useState({});
 
-  // if(aev == 'view'){
-  //   setTest("hellooo")
-  // }
-  React.useEffect(() => {
-    console.log(view, "view from useeffect");
-  }, [view])
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
@@ -94,7 +91,8 @@ export default function RegForm({ fields }) {
       [name]: value,
     }));
   };
-
+  
+ 
   const showData = (url) => {
     console.log(url, "url :");
 
@@ -106,36 +104,51 @@ export default function RegForm({ fields }) {
   };
 
   const handleEditButton = () => {
-    
-    const ress={}
-    const newDescData = view[0].map((item,index)=>{
-      ress[view[0][index]]= view[1][0][index]
+
+    const ress = {}
+    const newDescData = view[0].map((item, index) => {
+      ress[view[0][index].dataAttribute] = view[1][0][index]
     })
     setInputDetails(ress)
-    console.log(ress,"from handle button");
+    console.log(ress, "from handle button");
     navigate("/form/edit")
   }
 
-  React.useEffect(() => {
-    console.log(inputDetails)
-  }, [inputDetails])
+
 
   React.useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) console.log(inputDetails);
-  }, [formErrors]); 
+  }, [formErrors]);
 
   React.useEffect(() => {
-
     axios.get(fields)
       .then((resp) => setFormDetails(resp.data))
   }, []);
+
   React.useEffect(() => {
     if (aev != 'add') {
       console.log('edit function');
-      axios.get("/Details/description.json")
+      axios.get(list)
         .then((resp) => {
-          console.log(resp.data);
-          setInputDetails(resp.data)
+          //console.log(resp.data,"data from listtt");
+          const array = [];
+          resp.data.data.map((item, index) => {
+            array.push(Object.values(item))
+            // console.log(Object.values(item),"itemsss from array");
+          })
+          const newData = {};
+          newData.headCells = resp.data.headCells
+          newData.data = array
+
+          // console.log(newData,"converted array");
+          setInputDetails(newData)
+          if (aev == 'list') {
+            axios.get("/Service/posearch.json")
+              .then((resp) => {
+                setSearchBar(resp.data)
+                console.log(resp, "serach f");
+              })
+          }
         })
     }
   }, [formDetails])
@@ -160,9 +173,9 @@ export default function RegForm({ fields }) {
             {
               aev == 'list' ? (<>
                 {/* <TableData inputDetails={inputDetails} /> */}
-                <div style={{ display: "flex" }}>
+                <div style={{ display: "flex",alignItems:"center" }}>
 
-                  <TextField
+                  {/* <TextField
                     value={search}
                     name="search"
                     id="filled-search"
@@ -171,8 +184,29 @@ export default function RegForm({ fields }) {
                     variant="filled"
                     onChange={(e) => { handleSearch(e) }}
                   />
-                  <Button onClick={handleSearchButton} style={{ marginLeft: 10 }} variant="contained">Search</Button>
-                </div>
+                  <Button onClick={handleSearchButton} style={{ marginLeft: 10 }} variant="contained">Search</Button> */}
+                  {
+                    Object.keys(searchBar).length ? (
+                      searchBar.division.formelements.map((item, index) => {
+                        return (
+                          <div style={{width:200, margin:5}}>
+                            {
+                              item.control == 'select' ? (
+                                <SelectClass formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
+                                : item.control == 'textbox' ? (<TextFieldClass formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
+                                  : item.control == 'date' ? (<DateClass formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
+                                    : (<>No Data Box</>)
+
+                            }
+                            {/* // <FormFields FormDetails={item} onChange={onChange} inputDetails={inputDetails} /> */}
+                          </div>
+                        )
+                      })
+                    ) : <div>No Data</div>
+                  }
+                  <div>
+                    <Button fullWidth onClick={handleSearchButton} style={{ marginLeft: 10 }} variant="contained">Search</Button>
+                  </div></div>
                 <EnhancedTable inputDetails={inputDetails} selected={selected} setSelected={setSelected} setView={setView} />
 
               </>) : aev == 'view' ? (
@@ -189,7 +223,7 @@ export default function RegForm({ fields }) {
                             <Grid item xs={12} sm={4} >
                               <div style={styles}>
                                 <h3>
-                                  {view[0][index].charAt(0).toUpperCase() + view[0][index].slice(1)}
+                                  {view[0][index].headerLabel}
                                 </h3>
                                 <p>
                                   {view[1][0][index]}
@@ -225,11 +259,12 @@ export default function RegForm({ fields }) {
                     Object.keys(formDetails).length ? (
                       formDetails.division.formelements.map((item, index) => {
                         return (
-                          <Grid key={index} item xs={12} sm={4} > 
+                          <Grid key={index} item xs={12} sm={4} >
                             {
-                              item.control == 'select' ? (<Selects formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
-                                : item.control == 'textbox' ? (<TextBox formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
-                                  : item.control == 'date' ? (<Date formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
+                              item.control == 'select' ? (
+                                <SelectClass formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
+                                : item.control == 'textbox' ? (<TextFieldClass formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
+                                  : item.control == 'date' ? (<DateClass formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
                                     : (<>No Data Box</>)
 
                             }
@@ -244,7 +279,8 @@ export default function RegForm({ fields }) {
                       formDetails.division.buttons.map((item, index) => {
                         return (
                           <Grid key={index} item xs={12} sm={3} >
-                            <Buttons formDetails={item} showData={showData} inputDetails={inputDetails} aev={aev} />
+                            <ButtonClass formDetails={item} showData={showData} inputDetails={inputDetails} aev={aev} />
+                            {/* <Buttons formDetails={item} showData={showData} inputDetails={inputDetails} aev={aev} /> */}
                           </Grid>
                         )
                       })

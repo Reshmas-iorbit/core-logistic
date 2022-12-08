@@ -20,12 +20,14 @@
         "label": "Destination Location",
         "control": "select",
         "populateURL": "/Service/destination.json"
+        
       },
       {
         "id": "date",
         "label": "Expected Date",
         "control": "date",
         "validate": "datetime"
+
       },
       {
         "id": "address",

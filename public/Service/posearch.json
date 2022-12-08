@@ -1,0 +1,35 @@
+{
+    "division": {
+        "name": "PO Header",
+        "formelements": [
+            {
+                "id": "POID",
+                "label": "PO ID",
+                "control": "textbox",
+                "validation": "alphanumeric",
+                "disabled": true
+            },
+            {
+                "id": "origin",
+                "label": "Origin Location",
+                "control": "select",
+                "populateURL": "/Service/origin.json"
+            },
+            {
+                "id": "date",
+                "label": "Expected Date",
+                "control": "date",
+                "validate": "datetime"
+            }
+        ],
+        "buttons": [
+            {
+                "id": "search",
+                "label": "Search",
+                "control": "button",
+                "validationjs": "validatedata",
+                "submitURL": "https://localhost/createPO"
+            }
+        ]
+    }
+}

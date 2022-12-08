@@ -1,18 +1,30 @@
 {
     "headCells": [
-        "id",
-        "date",
-        "POID",
-        "address",
-        "contact",
-        "destination",
-        "email",
-        "membership",
-        "origin",
-        "price",
-        "production",
-        "truckload",
-        "warehouse"
+        {
+            "headerLabel": "PO Id",
+            "dataAttribute": "POID",
+            "control": "link"
+        },
+        {
+            "headerLabel": "Created Date",
+            "dataAttribute": "date"
+        },
+        {
+            "headerLabel": "Invoice Address",
+            "dataAttribute": "address"
+        },
+        {
+            "headerLabel": "Phone Number",
+            "dataAttribute": "contact"
+        },
+        {
+            "headerLabel": "Origin",
+            "dataAttribute": "origin"
+        },
+        {
+            "headerLabel": "Destination",
+            "dataAttribute": "destination"
+        }
     ],
     "data": [
         [
@@ -119,7 +131,8 @@
             "steel",
             "5000",
             "thakaram"
-        ], [
+        ],
+        [
             "8",
             "2022-11-19",
             "KL2022k",
@@ -134,6 +147,5 @@
             "5000",
             "thakaram"
         ]
-
     ]
 }

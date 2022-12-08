@@ -61,15 +61,12 @@ export default function RegForm({ fields }) {
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
-  const handleSearchButton = () => {
-    axios.get("/Details/search.json")
-      .then((resp) => {
-        console.log(resp.data);
-        setInputDetails(resp.data)
-      })
 
-    console.log(search, "button click");
-  }
+
+
+
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
   };

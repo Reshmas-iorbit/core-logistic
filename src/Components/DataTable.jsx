@@ -102,7 +102,7 @@ function EnhancedTableHead(props) {
                 // direction={orderBy === headCell.id ? order : 'asc'}
                 // onClick={createSortHandler(headCell.id)}
                 >
-                  {headCell.charAt(0).toUpperCase() + headCell.slice(1)}
+                  {headCell.headerLabel}
                   {/* {orderBy === headCell.id ? (
                     <Box component="span" sx={visuallyHidden}>
                       {order === 'desc' ? 'sorted descending' : 'sorted ascending'}

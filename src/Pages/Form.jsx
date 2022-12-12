@@ -44,10 +44,10 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function RegForm({ fields, list }) {
+export default function RegForm({ fields, list, aev }) {
   const navigate = useNavigate()
   // console.log(fields,"link for json");
-  const { aev } = useParams();
+  //const { aev } = useParams();
   console.log(aev);
   const styles = {
     border: '1px solid rgba(0, 0, 0, 0.3)', padding: '5px'
@@ -60,8 +60,6 @@ export default function RegForm({ fields, list }) {
   const [searchBar, setSearchBar] = React.useState({});
   const [search, setSearch] = React.useState("");
   const [view, setView] = React.useState(aev);
-  // const [edit, setEdit] = React.useState({});
-  // const [changeView, setChangeView] = React.useState("");
   const [selected, setSelected] = React.useState([]);
   const [isSubmit, setIsSubmit] = React.useState(false);
   const [formErrors, setFormErrors] = React.useState({});
@@ -91,8 +89,8 @@ export default function RegForm({ fields, list }) {
       [name]: value,
     }));
   };
-  
- 
+
+
   const showData = (url) => {
     console.log(url, "url :");
 
@@ -173,7 +171,7 @@ export default function RegForm({ fields, list }) {
             {
               aev == 'list' ? (<>
                 {/* <TableData inputDetails={inputDetails} /> */}
-                <div style={{ display: "flex",alignItems:"center" }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
 
                   {/* <TextField
                     value={search}
@@ -189,11 +187,11 @@ export default function RegForm({ fields, list }) {
                     Object.keys(searchBar).length ? (
                       searchBar.division.formelements.map((item, index) => {
                         return (
-                          <div style={{width:200, margin:5}}>
+                          <div style={{ width: 200, margin: 5 }}>
                             {
                               item.control == 'select' ? (
                                 <SelectClass formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
-                                : item.control == 'textbox' ? (<TextFieldClass formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
+                                : item.control == 'textbox' ? (<TextBox formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
                                   : item.control == 'date' ? (<DateClass formDetails={item} onChange={onChange} inputDetails={inputDetails} editFlag={aev} />)
                                     : (<>No Data Box</>)
 

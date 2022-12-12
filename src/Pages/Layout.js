@@ -20,6 +20,7 @@ import { Navigate, Outlet, useNavigate } from "react-router-dom";
 // import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from "@mui/icons-material/Mail";
 import ArticleIcon from "@mui/icons-material/Article";
+import { Paragliding } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -75,12 +76,12 @@ export default function Layout() {
     {
       text: "Create",
       icon: <MailIcon />,
-      nav: "form/add",
+      nav: "test/add",
     },
     {
       text: "List",
       icon: <ArticleIcon />,
-      nav: "form/list",
+      nav: "test/list",
     },
   ];
   const [open, setOpen] = React.useState(
@@ -177,5 +178,5 @@ export default function Layout() {
         </div>
       </Main>
     </Box>
-  );
+  ); 
 }

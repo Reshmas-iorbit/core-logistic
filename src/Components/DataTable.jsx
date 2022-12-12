@@ -129,10 +129,11 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
 
-  const { numSelected, handleViewButton ,setViewState } = props;
+  const { numSelected, handleViewButton, setViewState } = props;
   const navigation = useNavigate()
   const handleViewButtonClick = () => {
-    navigation("../form/view")
+    //navigation("../form/view")
+    navigation("../test/view")
     setViewState()
   }
 
@@ -196,7 +197,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable({ inputDetails, selected, setSelected, setView }) {
+export default function EnhancedTable({ inputDetails, selected, setSelected, state, setView }) {
   console.log(inputDetails, "data table");
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -205,6 +206,7 @@ export default function EnhancedTable({ inputDetails, selected, setSelected, set
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const naviagte = useNavigate()
+  console.log(state,"state from data tab");
   React.useEffect(() => {
     // const selectedData = Object.keys(inputDetails).length && inputDetails.data.filter((row) => {
     //   return row[0] == selected[0]
@@ -221,10 +223,10 @@ export default function EnhancedTable({ inputDetails, selected, setSelected, set
       return row[0] == selected[0]
 
     })
-    setTimeout(()=>{
+    setTimeout(() => {
       console.log("Timeout >>>>>>>>>>>>>>");
       Object.keys(inputDetails).length && setView([[...inputDetails.headCells], [...selectedData]])
-    },1000)
+    }, 1000)
 
   }
   const handleRequestSort = (event, property) => {
@@ -238,7 +240,8 @@ export default function EnhancedTable({ inputDetails, selected, setSelected, set
 
 
       const newSelected = Object.keys(inputDetails).length && inputDetails.data.map((n) => n);
-      setSelected(newSelected);
+      state.selected = newSelected
+      //setSelected(newSelected);
       return;
     }
     setSelected([]);
@@ -261,7 +264,7 @@ export default function EnhancedTable({ inputDetails, selected, setSelected, set
         selected.slice(selectedIndex + 1),
       );
     }
-
+    //state.selected = newSelected
     setSelected(newSelected);
   };
 

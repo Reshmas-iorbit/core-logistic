@@ -2,6 +2,7 @@ import { TextField } from '@mui/material'
 import React from 'react'
 
 const TextBox = ({ formDetails, onChange, inputDetails, editFlag }) => {
+    console.log(inputDetails, "text field input");
     return (
         <TextField
             id="outlined-read-only-input"

@@ -8,20 +8,25 @@ export class DateClass extends Component {
     render() {
 
         return (
-            <TextField
+            <>            {
+                this.props.inputDetails != undefined ? (
+                    <TextField
+                        focused
+                        id="outlined-uncontrolled"
+                        fullWidth
+                        required
+                        label={this.props.formDetails.label}
+                        // size='small'
+                        type="date"
+                        variant='outlined'
+                        onChange={this.props.onChange}
+                        name={this.props.formDetails.label}
+                        value={this.props.inputDetails.date}
+                    />
+                ) : (<></>)
+            }
+            </>
 
-                focused
-                id="outlined-uncontrolled"
-                fullWidth
-                required
-                label={this.props.formDetails.label}
-                // size='small'
-                type="date"
-                variant='outlined'
-                onChange={this.props.onChange}
-                name={this.props.formDetails.label}
-                value={this.props.inputDetails.date}
-            />
         )
     }
 }

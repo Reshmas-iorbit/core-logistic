@@ -9,44 +9,53 @@ export default class SelectClass extends Component {
 
     render() {
         return (
-            <FormControl fullWidth >
-                <InputLabel>{this.props.formDetails.label}</InputLabel>
-                <Select
-                    required
-                    fullWidth
-                    label={this.props.formDetails.id}
-                    // size='small'
-                    variant='outlined'
-                    type="select"
-                    name={this.props.formDetails.id}
-                    onChange={(e) => this.props.onChange(e)}
-                    value={this.props.inputDetails[this.props.formDetails.id]}
-                    InputProps={{
-                        readOnly: this.props.editFlag == 'edit' ? this.props.formDetails.disabled : this.props.editFlag == 'view' ? true : false
-                    }}
+            <>
+                {
+                    this.props.inputDetails != undefined ? (
+                        <FormControl fullWidth >
+                            <InputLabel>{this.props.formDetails.label}</InputLabel>
+                            <Select
+                                required
+                                fullWidth
+                                label={this.props.formDetails.id}
+                                // size='small'
+                                variant='outlined'
+                                type="select"
+                                name={this.props.formDetails.id}
+                                onChange={(e) => this.props.onChange(e)}
+                                value={this.props.inputDetails[this.props.formDetails.id]}
+                                InputProps={{
+                                    readOnly: this.props.editFlag == 'edit' ? this.props.formDetails.disabled : this.props.editFlag == 'view' ? true : false
+                                }}
 
-                >
-                    <MenuItem
-                        onChange={(e) => this.props.onChange(e)}
-                        value={this.props.inputDetails[this.props.formDetails.id]}
+                            >
+                                <MenuItem
+                                    onChange={(e) => this.props.onChange(e)}
+                                    value={this.props.inputDetails[this.props.formDetails.id]}
 
-                    >
-                        {/* <em>None</em> */}
-                    </MenuItem>
-                    {
-                        [
-                            "Kerala", "Tamilnadu", "Karnataka"
-                        ].map((item, index) => {
-                            return (
-                                <MenuItem key={index} value={item}>
-                                    {item}
+                                >
+                                    {/* <em>None</em> */}
                                 </MenuItem>
-                            )
-                        })
-                    }
+                                {
+                                    [
+                                        "Kerala", "Tamilnadu", "Karnataka"
+                                    ].map((item, index) => {
+                                        return (
+                                            <MenuItem key={index} value={item}>
+                                                {item}
+                                            </MenuItem>
+                                        )
+                                    })
+                                }
 
-                </Select>
-            </FormControl>
+                            </Select>
+                        </FormControl>
+                    ) : (
+                        <></>
+                    )
+                }
+
+            </>
         )
     }
 }

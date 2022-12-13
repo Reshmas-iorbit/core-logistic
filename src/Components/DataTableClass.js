@@ -5,7 +5,7 @@ export class DataTableClass extends Component {
         super(props)
 
         this.state = {
-
+            
             order: "asc",
             orderBy: "",
             page: 0,

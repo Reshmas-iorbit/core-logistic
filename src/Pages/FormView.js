@@ -4,21 +4,20 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from "@mui/material/Typography";
+
+
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 
 import { withRouter } from '../Components/WithRouter';
 import SelectClass from '../Components/SelectClass';
 import TextFieldClass from '../Components/TextFieldClass';
 import DateClass from '../Components/DateClass';
 import ButtonClass from '../Components/ButtonClass';
-import { json } from 'react-router-dom';
-import TextBox from '../Components/TextField';
+
+
 import EnhancedTable from '../Components/DataTable';
-import { PanTool } from '@mui/icons-material';
-import DataTableClass from '../Components/DataTableClass';
+
 
 
 export class FormView extends Component {
@@ -107,11 +106,6 @@ export class FormView extends Component {
     }
 
     onChange(e) {
-        // this.setState ({
-        //    inputDetails: this.state.bind
-        // }) 
-        // var newData = this.state.formDetails
-
         console.log(this.state.inputDetails);
         const name = e.target.name;
         const value = e.target.value
@@ -128,24 +122,24 @@ export class FormView extends Component {
                 console.log(resp.data);
                 this.setState({ formDetails: resp.data })
             })
-        //console.log(this.state.view,"view +++++++++");F
+      
     }
     componentDidMount() {
         this.getData();
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log(prevState, "component did update ");
-        if (prevState.formDetails != this.state.formDetails) {
+        if (prevState.formDetails !== this.state.formDetails) {
             console.log("State Changed");
-            if (this.props.aev != 'add') {
+            if (this.props.aev !== 'add') {
                 console.log('edit function');
                 axios.get(this.props.list)
                     .then((resp) => {
-                        //console.log(resp.data,"data from listtt");
+                        
                         const array = [];
                         resp.data.data.map((item, index) => {
                             array.push(Object.values(item))
-                            // console.log(Object.values(item),"itemsss from array");
+                            
                         })
                         const newData = {};
                         newData.headCells = resp.data.headCells
@@ -156,7 +150,7 @@ export class FormView extends Component {
                             inputDetails: { ...newData }
                         })
                         //setInputDetails(newData)
-                        if (this.props.aev == 'list') {
+                        if (this.props.aev === 'list') {
                             axios.get("/Service/posearch.json")
                                 .then((resp) => {
                                     this.setState({
@@ -192,7 +186,7 @@ export class FormView extends Component {
                         sx={{ mt: 4 }}
                     >{
 
-                            this.props.aev == 'list' ? (<>
+                            this.props.aev === 'list' ? (<>
                                 {/* <TableData inputDetails={inputDetails} /> */}
                                 <div style={{ display: "flex", alignItems: "center" }}>
 
@@ -212,10 +206,10 @@ export class FormView extends Component {
                                                 return (
                                                     <div key={index} style={{ width: 200, margin: 5 }}>
                                                         {
-                                                            item.control == 'select' ? (
+                                                            item.control === 'select' ? (
                                                                 <SelectClass formDetails={item} onChange={this.onChangeSearch} inputDetails={this.state.searchInputDetails} editFlag={this.props.aev} />)
-                                                                : item.control == 'textbox' ? (<TextFieldClass formDetails={item} onChange={this.onChangeSearch} inputDetails={this.state.searchInputDetails} editFlag={this.props.aev} />)
-                                                                    : item.control == 'date' ? (<DateClass formDetails={item} onChange={this.onChangeSearch} inputDetails={this.state.searchInputDetails} editFlag={this.props.aev} />)
+                                                                : item.control === 'textbox' ? (<TextFieldClass formDetails={item} onChange={this.onChangeSearch} inputDetails={this.state.searchInputDetails} editFlag={this.props.aev} />)
+                                                                    : item.control === 'date' ? (<DateClass formDetails={item} onChange={this.onChangeSearch} inputDetails={this.state.searchInputDetails} editFlag={this.props.aev} />)
                                                                         : (<>No Data Box</>)
 
                                                         }
@@ -238,15 +232,14 @@ export class FormView extends Component {
                                     setView={this.setView}
                                 />
 
-                            </>) :  this.props.aev == 'view' ? (
+                            </>) :  this.props.aev === 'view' ? (
                                 <div >
                                     <div>
 
                                         <Grid container spacing={4}>
 
                                             {
-
-                                                this.state.view && [...Array(this.state.view[0].length).keys()].map((item, index) => {
+                                                 this.state.view && [...Array(this.state.view[0].length).keys()].map((_item, index) => {
                                                     return (
                                                         <Grid item xs={12} sm={4} >
                                                             <div 
@@ -291,10 +284,10 @@ export class FormView extends Component {
                                                     return (
                                                         <Grid key={index} item xs={12} sm={4} >
                                                             {
-                                                                item.control == 'select' ? (
+                                                                item.control === 'select' ? (
                                                                     <SelectClass formDetails={item} onChange={this.onChange} inputDetails={this.state.inputDetails} editFlag={this.props.aev} />)
-                                                                    : item.control == 'textbox' ? (<TextFieldClass formDetails={item} onChange={this.onChange} inputDetails={this.state.inputDetails} editFlag={this.props.aev} />)
-                                                                        : item.control == 'date' ? (<DateClass formDetails={item} onChange={this.onChange} inputDetails={this.state.inputDetails} editFlag={this.props.aev} />)
+                                                                    : item.control === 'textbox' ? (<TextFieldClass formDetails={item} onChange={this.onChange} inputDetails={this.state.inputDetails} editFlag={this.props.aev} />)
+                                                                        : item.control === 'date' ? (<DateClass formDetails={item} onChange={this.onChange} inputDetails={this.state.inputDetails} editFlag={this.props.aev} />)
                                                                             : (<>No Data Box</>)
 
                                                             }

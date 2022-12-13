@@ -103,11 +103,7 @@ function EnhancedTableHead(props) {
                 // onClick={createSortHandler(headCell.id)}
                 >
                   {headCell.charAt(0).toUpperCase() + headCell.slice(1)}
-                  {/* {orderBy === headCell.id ? (
-                    <Box component="span" sx={visuallyHidden}>
-                      {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                    </Box>
-                  ) : null} */}
+                 
                 </TableSortLabel>
               </TableCell>
             ))
@@ -198,7 +194,7 @@ export default function EnhancedTable({ inputDetails, selected, setSelected, set
   console.log(inputDetails, "data table");
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
-  // const [selected, setSelected] = React.useState([]);
+ 
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);

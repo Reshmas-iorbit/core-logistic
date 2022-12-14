@@ -3,7 +3,7 @@ import Layout from './Pages/Layout';
 import { Routes, Route, useNavigate } from "react-router-dom";
 import RegForm from './Pages/Form';
 import TableView from './Components/Table';
-import FormView from './Pages/FormView';
+import FormView from './Components/CreateForm';
 import { useEffect } from 'react';
 
 

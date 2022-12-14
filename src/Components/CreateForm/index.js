@@ -9,14 +9,14 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
 
-import { withRouter } from '../Components/WithRouter';
-import SelectClass from '../Components/SelectClass';
-import TextFieldClass from '../Components/TextFieldClass';
-import DateClass from '../Components/DateClass';
-import ButtonClass from '../Components/ButtonClass';
+import { withRouter } from './WithRouter';
+import SelectClass from './SelectClass';
+import TextFieldClass from './TextFieldClass';
+import DateClass from './DateClass';
+import ButtonClass from './ButtonClass';
 
 
-import EnhancedTable from '../Components/DataTable';
+import EnhancedTable from './DataTable';
 
 
 

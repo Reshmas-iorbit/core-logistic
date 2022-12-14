@@ -18,11 +18,11 @@ import Selects from "../Components/Select";
 import { useNavigate, useParams } from "react-router-dom";
 
 import Buttons from "../Components/Button";
-import EnhancedTable from "../Components/DataTable";
-import ButtonClass from "../Components/ButtonClass";
-import SelectClass from "../Components/SelectClass";
-import TextFieldClass from "../Components/TextFieldClass";
-import DateClass from "../Components/DateClass";
+import EnhancedTable from "../Components/CreateForm/DataTable";
+import ButtonClass from "../Components/CreateForm/ButtonClass";
+import SelectClass from "../Components/CreateForm/SelectClass";
+import TextFieldClass from "../Components/CreateForm/TextFieldClass";
+import DateClass from "../Components/CreateForm/DateClass";
 
 function Copyright(props) {
   return (

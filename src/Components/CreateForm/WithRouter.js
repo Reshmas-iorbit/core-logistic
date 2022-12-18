@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-
+import React from 'react'
 export function withRouter( Child ) {
     return ( props ) => {
       const params = useParams();

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { Component } from 'react'
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -49,20 +48,20 @@ export class FormView extends Component {
 
     };
 
-    handleEditButton () {
+    handleEditButton() {
         console.log("from handle button");
         const ress = {}
         const newDescData = this.state.view[0].map((item, index) => {
-          ress[this.state.view[0][index].dataAttribute] = this.state.view[1][0][index]
+            ress[this.state.view[0][index].dataAttribute] = this.state.view[1][0][index]
         })
         this.setState({
-            inputDetails: {...ress}
+            inputDetails: { ...ress }
         })
         //setInputDetails(ress)
         console.log(ress, "from handle button");
         this.props.navigate('/test/edit')
         //navigate("/test/edit")
-      }
+    }
 
     setView(selectedView) {
         console.log(selectedView, "selected viewww");
@@ -85,8 +84,7 @@ export class FormView extends Component {
     showData(url) {
 
         console.log(url, "url :");
-
-        axios.post(url, this.state.inputDetails)
+        this.props.postApi(url, this.props.inputDetails)
             .then((resp) => {
                 // setFormDetails(resp.data)
                 console.log(resp);
@@ -117,12 +115,12 @@ export class FormView extends Component {
     }
     getData() {
         console.log("component did mount getdata");
-        axios.get(this.props.fields)
+        this.props.getApi(this.props.fields)
             .then((resp) => {
                 console.log(resp.data);
                 this.setState({ formDetails: resp.data })
             })
-      
+
     }
     componentDidMount() {
         this.getData();
@@ -133,13 +131,13 @@ export class FormView extends Component {
             console.log("State Changed");
             if (this.props.aev !== 'add') {
                 console.log('edit function');
-                axios.get(this.props.list)
+                this.props.getApi(this.props.list)
                     .then((resp) => {
-                        
+
                         const array = [];
                         resp.data.data.map((item, index) => {
                             array.push(Object.values(item))
-                            
+
                         })
                         const newData = {};
                         newData.headCells = resp.data.headCells
@@ -151,7 +149,8 @@ export class FormView extends Component {
                         })
                         //setInputDetails(newData)
                         if (this.props.aev === 'list') {
-                            axios.get("/Service/posearch.json")
+                            this.props.getApi(this.props.search)
+
                                 .then((resp) => {
                                     this.setState({
                                         searchBar: resp.data
@@ -161,6 +160,11 @@ export class FormView extends Component {
                                 })
                         }
                     })
+                    .catch(error => {
+                        console.log(error);
+                    });
+
+
             }
         }
     }
@@ -232,17 +236,17 @@ export class FormView extends Component {
                                     setView={this.setView}
                                 />
 
-                            </>) :  this.props.aev === 'view' ? (
+                            </>) : this.props.aev === 'view' ? (
                                 <div >
                                     <div>
 
                                         <Grid container spacing={4}>
 
                                             {
-                                                 this.state.view && [...Array(this.state.view[0].length).keys()].map((_item, index) => {
+                                                this.state.view && [...Array(this.state.view[0].length).keys()].map((_item, index) => {
                                                     return (
                                                         <Grid item xs={12} sm={4} >
-                                                            <div 
+                                                            <div
                                                             //style={styles}
                                                             >
                                                                 <h3>

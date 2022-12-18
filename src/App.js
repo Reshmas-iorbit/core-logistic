@@ -6,13 +6,14 @@ import TableView from './Components/Table';
 import FormView from './Components/CreateForm';
 import { useEffect } from 'react';
 
-
+import { getApi, postApi } from "./webservice"
 
 const App = () => {
   // const [view, setView] = React.useState("list");
   // const [selected, setSelected] = React.useState([]);
   const fields = "/Service/po.json";
   const list = "/Details/list.json"
+  const search = "/Service/posearch.json"
   //const list = "/Details/listOld.json"
   const navigate = useNavigate()
   useEffect(() => {
@@ -32,10 +33,10 @@ const App = () => {
         <Route path="/form/view" element={<RegForm aev={'view'} fields={fields} list={list} />} />
         <Route path="/form/edit" element={<RegForm aev={'edit'} fields={fields} list={list} />} />
 
-        <Route path="/test/list" element={<FormView aev={'list'} fields={fields} list={list} />} />
-        <Route path="/test/add" element={<FormView aev={'add'} fields={fields} list={list}  />} />
-        <Route path="/test/view" element={<FormView aev={'view'} fields={fields} list={list} navigate={navigate} />} />
-        <Route path="/test/edit" element={<FormView aev={'edit'} fields={fields} list={list} />} />
+        <Route path="/test/list" element={<FormView aev={'list'} fields={fields} list={list} search={search} getApi={getApi} postApi={postApi} />} />
+        <Route path="/test/add" element={<FormView aev={'add'} fields={fields} list={list} search={search} getApi={getApi} postApi={postApi} />} />
+        <Route path="/test/view" element={<FormView aev={'view'} fields={fields} list={list} navigate={navigate} search={search} getApi={getApi} postApi={postApi} />} />
+        <Route path="/test/edit" element={<FormView aev={'edit'} fields={fields} list={list} getApi={getApi} search={search} postApi={postApi} />} />
         {/* <Route path="/test/:aev" element={<FormView fields={fields} list={list} />} />
         <Route path="/test/:aev" element={<FormView fields={fields} list={list} />} /> */}
       </Route>

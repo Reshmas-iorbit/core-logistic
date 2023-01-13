@@ -13,7 +13,7 @@ import SelectClass from './SelectClass';
 import TextFieldClass from './TextFieldClass';
 import DateClass from './DateClass';
 import ButtonClass from './ButtonClass';
-
+import { validation } from './Validattion';
 
 import EnhancedTable from './DataTable';
 
@@ -42,8 +42,7 @@ export class FormView extends Component {
             view: aev,
             selected: [],
             isSubmit: '',
-            formErrors: ''
-
+            formErrors: {}
         }
 
     };
@@ -84,6 +83,16 @@ export class FormView extends Component {
     showData(url) {
 
         console.log(url, "url :");
+
+        const valid = false
+        this.state.formDetails.division.formelements.map((item, index) => {
+            if (item.validate) {
+                if (!this.state.inputDetails[item.id]) {
+                    console.log(item.id,"validationnnn erre");
+                }
+            }
+        })
+
         this.props.postApi(url, this.props.inputDetails)
             .then((resp) => {
                 // setFormDetails(resp.data)
@@ -104,14 +113,30 @@ export class FormView extends Component {
     }
 
     onChange(e) {
-        console.log(this.state.inputDetails);
         const name = e.target.name;
         const value = e.target.value
+        const component = this.state.formDetails.division.formelements.filter((item) => {
+            if (item.id == name)
+                return item
+        })
+        const isValid = validation(value, component[0].validate)
+        console.log(validation(value, component[0].validate), "validation");
+        console.log(component, "selected comp");
+
         this.setState({
             inputDetails: {
                 ...this.state.inputDetails, [name]: value
             }
         })
+
+        this.setState({
+            formErrors: {
+                ...this.state.formErrors, [name]: !validation(value, component[0].validate)
+            }
+        })
+
+
+
     }
     getData() {
         console.log("component did mount getdata");
@@ -290,7 +315,7 @@ export class FormView extends Component {
                                                             {
                                                                 item.control === 'select' ? (
                                                                     <SelectClass formDetails={item} onChange={this.onChange} inputDetails={this.state.inputDetails} editFlag={this.props.aev} />)
-                                                                    : item.control === 'textbox' ? (<TextFieldClass formDetails={item} onChange={this.onChange} inputDetails={this.state.inputDetails} editFlag={this.props.aev} />)
+                                                                    : item.control === 'textbox' ? (<TextFieldClass formDetails={item} onChange={this.onChange} inputDetails={this.state.inputDetails} editFlag={this.props.aev} formErrors={this.state.formErrors} />)
                                                                         : item.control === 'date' ? (<DateClass formDetails={item} onChange={this.onChange} inputDetails={this.state.inputDetails} editFlag={this.props.aev} />)
                                                                             : (<>No Data Box</>)
 

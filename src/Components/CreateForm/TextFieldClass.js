@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 export default class TextFieldClass extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props.inputDetails, "text field input");
+        console.log(this.props, "text field input");
     }
     render() {
         return (
@@ -12,8 +12,10 @@ export default class TextFieldClass extends Component {
                 {
 
                     <TextField
+                       error={this.props.formErrors[this.props.formDetails.id] ? this.props.formErrors[this.props.formDetails.id] : false}
+                        //helperText="Validation error"
                         id="outlined-read-only-input"
-                        required
+                        required ={this.props.formDetails.validate ? true : false}
                         label={this.props.formDetails.id}
                         fullWidth
                         // size='small'

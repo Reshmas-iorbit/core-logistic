@@ -6,76 +6,84 @@
         "id": "POID",
         "label": "PO ID",
         "control": "textbox",
-        "validation": "alphanumeric",
+      
         "disabled": true
       },
       {
         "id": "origin",
         "label": "Origin Location",
         "control": "select",
-        "populateURL": "/Service/origin.json"
+        "populateURL": "/Service/origin.json",
+        "required": "true"
       },
       {
         "id": "destination",
         "label": "Destination Location",
         "control": "select",
-        "populateURL": "/Service/destination.json"
-        
+        "populateURL": "/Service/destination.json",
+        "required": "true"
       },
       {
         "id": "date",
         "label": "Expected Date",
         "control": "date",
-        "validate": "datetime"
-
+        "validate": "datetime",
+        "required": "true"
       },
       {
         "id": "address",
         "label": "Address",
         "control": "textbox",
-        "validate": "alphanumeric"
+        "validate": "alphanumeric",
+        "required": "true"
       },
       {
         "id": "email",
         "label": "Email",
         "control": "textbox",
-        "validate": ""
+        "validate": "email",
+        "required": "true"
       },
       {
         "id": "production",
         "label": "Production",
         "control": "textbox",
-        "validate": "alphanumeric"
+        "validate": "alphanumeric",
+        "required": "true"
       },
       {
         "id": "membership",
         "label": "Membership",
         "control": "textbox",
-        "validate": "alphanumeric"
+        "required": "true"
       },
       {
         "id": "warehouse",
         "label": "WareHouse Service",
         "control": "textbox",
-        "validate": "alphanumeric"
+        "validate": "alphanumeric",
+        "required": "true"
       },
       {
         "id": "truckload",
         "label": "TruckLoad Service",
         "control": "textbox",
-        "validate": "alphanumeric"
+        "validate": "alphanumeric",
+        "required": "true"
       },
       {
         "id": "price",
         "label": "Price",
         "control": "textbox",
-        "validate": "alphanumeric"
+        "validate": "price",
+        "required": "true"
       },
       {
         "id": "contact",
         "label": "Contact",
         "control": "textbox",
-        "validate": "alphanumeric"
+        "validate": "phone",
+        "required": "true"
       }
     ],
     "buttons": [

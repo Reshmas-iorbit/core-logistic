@@ -368,7 +368,7 @@ export default function EnhancedTable({ inputDetails, selected, setSelected, sta
                     height: (dense ? 33 : 53) * emptyRows,
                   }}
                 >
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={8} />
                 </TableRow>
               )}
             </TableBody>

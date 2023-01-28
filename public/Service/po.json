@@ -48,13 +48,14 @@
         "id": "production",
         "label": "Production",
         "control": "textbox",
-        "validate": "alphanumeric",
+        "validate": "aadhar",
         "required": "true"
       },
       {
         "id": "membership",
         "label": "Membership",
         "control": "textbox",
+        "validate": "pan",
         "required": "true"
       },
       {
